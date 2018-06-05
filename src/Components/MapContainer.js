@@ -2,16 +2,27 @@ import React from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 //Components
-import StoresMap from './StoresMap'
 import data from '.././store_directory.json'
 
 export class MapContainer extends React.Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+ 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
   
   render() {
 
     return (
       <Map google={this.props.google}
-           style={{width: '100%', height: '100%', position: 'relative'}}
+           style={{width: '90%', height: '100%', position: 'relative'}}
            className={'map'}
            initialCenter={{
             lat: 19.4284700,
@@ -21,10 +32,19 @@ export class MapContainer extends React.Component {
         {
           data.map(store => {
             return (
-              <Marker title={store.Name} position={store.Coordinates} />
+              <Marker onClick={this.onMarkerClick} name={store.Name} title={store.Address} position={store.Coordinates} />
             )
           })
-        }   
+        }
+         <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+            <div>
+              <h2>{this.state.selectedPlace.name}</h2>
+              <p>{this.state.selectedPlace.title}</p>
+              <a href="">Agregar a Tiendas favoritas</a>
+            </div>
+        </InfoWindow> 
       </Map>
     );
   }
