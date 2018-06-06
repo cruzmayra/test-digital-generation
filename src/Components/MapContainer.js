@@ -22,7 +22,7 @@ export class MapContainer extends React.Component {
 
     return (
       <Map google={this.props.google}
-           style={{width: '90%', height: '100%', position: 'relative'}}
+           style={{width: '96%', height: '100%', position: 'relative'}}
            className={'map'}
            initialCenter={{
             lat: 19.4284700,
@@ -40,9 +40,9 @@ export class MapContainer extends React.Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
             <div>
-              <h2>{this.state.selectedPlace.name}</h2>
+              <h3>{this.state.selectedPlace.name}</h3>
               <p>{this.state.selectedPlace.title}</p>
-              <a href="">Agregar a Tiendas favoritas</a>
+              <a href="">Add to 'My Favorite Stores'</a>
             </div>
         </InfoWindow> 
       </Map>

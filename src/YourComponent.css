@@ -1,4 +1,12 @@
-#map {
-  height: 500px;
-  width: 100%;
+#root > div > div > div > ul {
+  background: #48B5E9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 5em;
+}
+
+#root > div > div > div > div > div {
+  min-height: 500px;
 }
