@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
+import { Container, Row, Col, Nav, NavItem } from 'reactstrap';
 
+
+//Components
+import MapContainer from './Components/MapContainer'
+import StoreList from './Components/StoreList'
 import './YourComponent.css'
-import data from './store_directory.json'
-
 /*
 * Use this component as a launching-pad to build your functionality.
 *
 */
 class YourComponent extends Component {
 
-  componentDidMount() {
-    let map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 19.4284700, lng: -99.1276600},
-      zoom: 11,
-      mapTypeId: 'roadmap',
-    });
-
-    let markers = data.map(store => {
-      return new window.google.maps.Marker({
-        position: store.Coordinates,
-        map: map
-      })
-    })
-  }
-
   render() {
     return (
       <div style={divStyle}>
         <h1> Put your solution here!</h1>
-        <div id='map' />
+        <Container>
+          <Nav>
+            <NavItem><h1>Favorite Stores ❤</h1></NavItem>
+          </Nav>
+          <Row>
+            <Col sm="12" md="3">
+              <StoreList />
+            </ Col>
+            <Col sm="12" md="9">
+              <MapContainer />        
+            </ Col>
+          </ Row>
+        </ Container>
       </div>
     );
   }
